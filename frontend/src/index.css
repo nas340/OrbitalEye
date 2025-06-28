@@ -1,8 +1,38 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@tailwind utilities;
 
 html,
 body,
 #root {
   height: 100%;
   margin: unset;
+}
+
+.glass {
+  @apply bg-white/10 border border-white/20 shadow-lg backdrop-blur-3xl text-white rounded-md;
+}
+
+.red-glass {
+  @apply bg-[#5a0d0d2a] border border-red-500;
+}
+
+.teal-glass {
+  @apply bg-[#218d4e72] border border-teal-500;
+}
+
+/* Custom scrollbar for explanation box */
+.explanation-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #a2a2a2 #69696958 /* thumb color, track color */
+}
+
+/* For Chrome, Edge, and Safari */
+.explanation-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background: #000000; /* zinc-900 */
+}
+
+.explanation-scrollbar::-webkit-scrollbar-thumb {
+  background: #000000; /* black */
+  border-radius: 8px;
 }

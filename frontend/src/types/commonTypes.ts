@@ -6,4 +6,15 @@ export const enum RequestMethod {
 export interface ApiConfig {
   uri: string;
   method: RequestMethod;
+  body?: any;
+}
+
+export interface ContextType {
+  screen?: Screens;
+}
+
+export enum Screens {
+  IOTD = 'IOTD',
+  ASTEROID_DATA = 'ASTEROID',
+  HIDE = ''
 }

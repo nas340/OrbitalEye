@@ -21,7 +21,7 @@ const Earth = () => {
           fov: 75,
           near: 0.1,
           far: 1000,
-          position: [0, 0, 3],
+          position: [0, 0, 2],
         }}
       >
         <group position={[0, 0, 0]} rotation={[0, rotationDegrees * 0.0174, 0]}>
