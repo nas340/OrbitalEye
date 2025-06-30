@@ -1,4 +1,5 @@
-import { AsteroidData } from '../../types/apiTypes';
+import { AsteroidData } from '../../../types/apiTypes';
+import Info from '../info';
 
 export const SelectedAsteroid = ({ data }: { data: AsteroidData }) => {
   return (
@@ -6,15 +7,25 @@ export const SelectedAsteroid = ({ data }: { data: AsteroidData }) => {
       <h3 className="mb-4 font-semibold">Detailed information</h3>
       <div className="flex justify-center items-center gap-x-4">
         <img className="h-20 w-24" src="/asteroid.png" />
-        <div>
+        <div className='hidden lg:block'>
           <div>
             <p className="font-thin">Asteroid id</p>
-            <p className="font-bold text-xl">{data?.id}</p>
+            <p className="font-bold text-lg">{data?.id}</p>
           </div>
           <div className="mt-4">
             <p className="font-thin">Asteroid name</p>
-            <p className="font-bold text-xl">{data?.name}</p>
+            <p className="font-bold text-lg">{data?.name}</p>
           </div>
+        </div>
+      </div>
+      <div className='lg:hidden'>
+        <div>
+          <p className="font-thin">Asteroid id</p>
+          <p className="font-bold text-xl">{data?.id}</p>
+        </div>
+        <div className="">
+          <p className="font-thin">Asteroid name</p>
+          <p className="font-bold text-xl">{data?.name}</p>
         </div>
       </div>
       {data?.isHazardous ? (
@@ -28,30 +39,25 @@ export const SelectedAsteroid = ({ data }: { data: AsteroidData }) => {
           <p>This asteroid is harmless!</p>
         </div>
       )}
-      <div>
-        <p className="font-thin text-sm mt-4">How big is it?</p>
-        <h4 className="text-4xl font-semibold">
-          {data?.estimatedDiameter} kms
-        </h4>
-      </div>
-      <div>
-        <p className="font-thin text-sm mt-4">How fast is it moving?</p>
-        <h4 className="text-4xl font-semibold">
-          {data?.relativeVelocity} kms/sec
-        </h4>
-      </div>
-      <div>
-        <p className="font-thin text-sm mt-4">
-          How close will it get to earth?
-        </p>
-        <h4 className="text-4xl font-semibold">{data?.missDistance} km</h4>
-      </div>
-      <div>
-        <p className="font-thin text-sm mt-4">
-          When is it going to approach us?
-        </p>
-        <h4 className="text-4xl font-semibold">{data?.approachDate}</h4>
-      </div>
+      <Info
+        eyebrowText="How big is it?"
+        value={data?.estimatedDiameter}
+        uom="kms"
+      />
+      <Info
+        eyebrowText="How fast is it moving?"
+        value={data?.relativeVelocity}
+        uom="kms/sec"
+      />
+      <Info
+        eyebrowText="How close will it get to earth?"
+        value={data?.missDistance}
+        uom="kms"
+      />
+      <Info
+        eyebrowText="When is it going to approach us?"
+        value={data?.approachDate}
+      />
       <div>
         <p className="font-thin text-sm mt-4">
           For more info please visit this link:

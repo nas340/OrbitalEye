@@ -1,7 +1,7 @@
 import { ReactNode, useContext } from 'react';
-import '../../index.css';
-import { AppContext } from '../../context/appContext';
-import { Screens } from '../../types/commonTypes';
+import { AppContext } from '../../../context/appContext';
+import { Screens } from '../../../types/commonTypes';
+import './modal.css'
 
 interface ModalProps {
   children: ReactNode;
@@ -11,9 +11,9 @@ const Modal = ({ children }: ModalProps) => {
   const { setContext } = useContext(AppContext);
   return (
     <>
-      <div className="absolute h-screen w-screen top-1/2 left-1/2 -translate-1/2 rounded-2xl max-h-[80vh] z-10">
+      <div className="modal-container">
         <div
-          className="flex justify-center items-center h-full w-full rounded-2xl"
+          className="modal-content-wrapper"
           onClick={e => {
             if (e.target === e.currentTarget) {
               setContext(prev => ({

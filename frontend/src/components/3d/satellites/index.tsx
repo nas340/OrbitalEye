@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { fetchData } from '../../util/api';
-import { satelliteData } from '../../util/apiConfig';
-import { SatelliteData } from '../../types/apiTypes';
+import { fetchData } from '../../../util/api';
+import { satelliteData } from '../../../util/apiConfig';
+import { SatelliteData } from '../../../types/apiTypes';
 import { Vector3 } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';

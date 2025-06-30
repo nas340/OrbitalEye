@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Earth from './components/earth';
+import Earth from './components/3d/earth';
 import { OrbitalEyeLander } from './components/lander/lander';
 import { AppContext } from './context/appContext';
 

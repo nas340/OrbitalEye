@@ -1,5 +1,5 @@
 import { Canvas, useLoader } from '@react-three/fiber';
-import { OrbitControls, Line } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import './style.css';
 import { TextureLoader, AdditiveBlending } from 'three';
 import DashedLine from '../dashedline';
@@ -21,7 +21,7 @@ const Earth = () => {
           fov: 75,
           near: 0.1,
           far: 1000,
-          position: [0, 0, 2],
+          position: [0, 0, 5],
         }}
       >
         <group position={[0, 0, 0]} rotation={[0, rotationDegrees * 0.0174, 0]}>
@@ -51,7 +51,7 @@ const Earth = () => {
         <Satellites />
         <ambientLight intensity={0.2} />
         <directionalLight position={[5, 0, 1]} color="white" intensity={3} />
-        <OrbitControls />
+        <OrbitControls minDistance={2} maxDistance={10}/>
       </Canvas>
     </div>
   );

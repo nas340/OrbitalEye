@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    './src/**/*.{js,jsx,ts,tsx}', // include your component files
+    './src/**/*.{js,jsx,ts,tsx,css}', // include your component files
   ],
   theme: {
     extend: {},

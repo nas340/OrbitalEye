@@ -36,3 +36,7 @@ body,
   background: #000000; /* black */
   border-radius: 8px;
 }
+
+button {
+  @apply cursor-pointer;
+}
