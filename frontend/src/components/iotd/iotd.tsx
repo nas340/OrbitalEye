@@ -11,8 +11,10 @@ export const Iotd = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    fetchData(iotdData)
+  const fetchIotdData = (date?: string) => {
+    setLoading(true);
+    setResponse(undefined);
+    fetchData(iotdData(date))
       .then(data => {
         if (data.length === 0) setError(false);
         setResponse(data);
@@ -23,7 +25,19 @@ export const Iotd = () => {
         setLoading(false);
         setError(true);
       });
+  };
+
+  useEffect(() => {
+    fetchIotdData();
   }, []);
+
+  const getTodayDateString = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
   return (
     <div className="">
@@ -41,6 +55,18 @@ export const Iotd = () => {
         {response && (
           <>
             <div className="max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] max-h-[50vh] overflow-hidden flex items-center justify-center relative">
+              <div className="absolute top-0 right-0 m-2 z-30">
+                <div className="glass flex justify-end">
+                  <input
+                    name="date"
+                    type="date"
+                    placeholder="helo"
+                    className="border px-4 py-2 rounded-md border-zinc-400"
+                    max={getTodayDateString()}
+                    onChange={event => fetchIotdData(event.target.value)}
+                  />
+                </div>
+              </div>
               <a href={response?.hdurl}>
                 <img className="h-full w-full" src={response?.hdurl} />
                 <div className="bg-gradient-to-t from-black/80 inset-0 via-transparent to-transparent absolute" />
