@@ -40,9 +40,6 @@ router.get("/satellite", async (req, res) => {
 
 router.get("/iotd", async (req, res) => {
   console.log("APIROUTES: Fetching IOTD");
-  console.log(
-    `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
-  );
   try {
     let IOTDResponse: IOTDResponse;
     if (!iotdCache) {
