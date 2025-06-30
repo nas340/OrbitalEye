@@ -10,6 +10,7 @@ import {
 import {
   getAsteroidData,
   getSatelliteData,
+  getTodayDateString,
 } from "../helper/SatelliteDataHelper";
 
 const router = express.Router();
@@ -38,12 +39,16 @@ router.get("/satellite", async (req, res) => {
   }
 });
 
-router.get("/iotd", async (req, res) => {
+router.post("/iotd", async (req, res) => {
   console.log("APIROUTES: Fetching IOTD");
   try {
     let IOTDResponse: IOTDResponse;
+    let date = req?.body?.date;
+    if (!date) {
+      date = getTodayDateString();
+    }
     if (!iotdCache) {
-      IOTDResponse = await fetchData(IOTDApiConfig);
+      IOTDResponse = await fetchData(IOTDApiConfig(date));
     } else {
       IOTDResponse = iotdCache;
     }
@@ -51,7 +56,7 @@ router.get("/iotd", async (req, res) => {
     res.json(IOTDResponse);
   } catch (err) {
     res.status(400);
-    console.log("APIROUTES: Fetching IOTD data - Failure");
+    console.log("APIROUTES: Fetching IOTD data - Failure", err);
     res.json(getErrorMessage(err));
   }
 });

@@ -3,7 +3,7 @@ import { RequestMethod } from "../constants/types/commonTypes";
 import dotenv from "dotenv";
 dotenv.config();
 
-const APIKEY = process.env.APIKEY
+const APIKEY = process.env.APIKEY;
 
 console.log("APIKEY", APIKEY);
 
@@ -12,9 +12,12 @@ export const tleApiConfig = {
   method: RequestMethod.GET,
 };
 
-export const IOTDApiConfig = {
-  uri: `https://api.nasa.gov/planetary/apod?api_key=${APIKEY}`,
-  method: RequestMethod.GET,
+export const IOTDApiConfig = (date: string) => {
+  console.log(`https://api.nasa.gov/planetary/apod?date=${date}&api_key=${APIKEY}`, "uri")
+  return {
+    uri: `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${APIKEY}`,
+    method: RequestMethod.GET,
+  };
 };
 
 export const asteroidApi = (start_date: string, end_date: string) => {
