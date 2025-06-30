@@ -1,12 +1,24 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+interface mousePosition {
+  position: {
+    x: number;
+    y: number;
+  };
+}
+
 const Stars = () => {
-  const starsRef = useRef({});
+  const starsRef = useRef<mousePosition>({
+    position: {
+      x: 0,
+      y: 0,
+    },
+  });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = event => {
+    const handleMouseMove = (event: any) => {
       // Convert mouse position to normalized coordinates (-1 to 1)
       setMousePosition({
         x: (event.clientX / window.innerWidth) * 2 - 1,

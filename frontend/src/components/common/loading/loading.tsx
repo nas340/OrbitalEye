@@ -1,4 +1,4 @@
-import { BarLoader, CircleLoader, ClipLoader, ClockLoader, DotLoader, FadeLoader, RingLoader, RotateLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 
 const Loading = () => {
   return ( <div>
