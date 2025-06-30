@@ -16,5 +16,6 @@ export interface ContextType {
 export enum Screens {
   IOTD = 'IOTD',
   ASTEROID_DATA = 'ASTEROID',
+  NATURAL_EVENTS = 'NATURAL_EVENTS',
   HIDE = ''
 }

@@ -24,3 +24,8 @@ export const asteroidData = (startDate: string, endDate: string): ApiConfig => {
     body: { startDate, endDate },
   };
 };
+
+export const naturalEvents = {
+  uri: microServiceUrl + "/api/naturalevents",
+  method: RequestMethod.GET
+}

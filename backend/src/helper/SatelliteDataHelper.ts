@@ -8,6 +8,7 @@ import {
 import {
   AsteriodDataResponse,
   AsteroidData,
+  NaturalEventResponse,
   TLEResponse,
 } from "../constants/types/ApiTypes";
 import { SatelliteData } from "../constants/types/ApiTypes";
@@ -97,4 +98,13 @@ export const getTodayDateString = (): string => {
   const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
   const day = String(today.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
+};
+
+export const getGraphData = (response: NaturalEventResponse) => {
+  let graphData: Record<number, number> = {};
+  response.events.forEach((val) => {
+    const year = new Date(val.closed).getFullYear();
+    graphData[year] ? (graphData[year] += 1) : (graphData[year] = 1);
+  });
+  return graphData;
 };

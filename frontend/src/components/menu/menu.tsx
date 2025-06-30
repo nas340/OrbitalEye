@@ -37,7 +37,7 @@ export const Menu = () => {
         </svg>
       </div>
       {displayDropdown && (
-        <div className="glass mt-2 flex flex-col">
+        <div className="glass mt-2 flex flex-col md:hidden">
           <button
             className="px-4 py-2 hover:bg-zinc-700"
             onClick={() => updateContextWithScreen(Screens.IOTD)}
@@ -51,9 +51,15 @@ export const Menu = () => {
           >
             Asteroid info
           </button>
+          <button
+            className="px-4 py-2 hover:bg-zinc-700"
+            onClick={() => updateContextWithScreen(Screens.NATURAL_EVENTS)}
+          >
+            Natural events graph
+          </button>
         </div>
       )}
-      <div className="flex font-thin italic gap-x-8 mt-2 ml-4">
+      <div className="hidden md:flex font-thin italic gap-x-8 mt-2 ml-4">
         <button
           onClick={() => updateContextWithScreen(Screens.IOTD)}
           className="text-white text-xl hover:underline"
@@ -65,6 +71,12 @@ export const Menu = () => {
           className="text-white text-xl hover:underline"
         >
           Asteroid info
+        </button>
+        <button
+          onClick={() => updateContextWithScreen(Screens.NATURAL_EVENTS)}
+          className="text-white text-xl hover:underline"
+        >
+          Natural events graph
         </button>
       </div>
     </div>

@@ -70,7 +70,7 @@ export const Iotd = () => {
               <a href={response?.hdurl}>
                 <img className="h-full w-full" src={response?.hdurl} />
                 <div className="bg-gradient-to-t from-black/80 inset-0 via-transparent to-transparent absolute" />
-                <div className="absolute bottom-0 left-0 p-4">
+                <div className="absolute bottom-0 left-0 p-4 ml-5">
                   <p className="font-thin text-xl ">NASA Image of the day</p>
                   <h3 className="text-5xl italic">{response?.title}</h3>
                 </div>

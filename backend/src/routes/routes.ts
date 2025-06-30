@@ -1,14 +1,21 @@
 import express from "express";
 import { fetchData, getErrorMessage } from "../util/api";
-import { IOTDApiConfig, asteroidApi, tleApiConfig } from "../config/apiConfig";
+import {
+  IOTDApiConfig,
+  asteroidApi,
+  naturalEventApi,
+  tleApiConfig,
+} from "../config/apiConfig";
 import {
   IOTDResponse,
   TLEResponse,
   AsteriodDataResponse,
   AsteroidData,
+  NaturalEventResponse,
 } from "../constants/types/ApiTypes";
 import {
   getAsteroidData,
+  getGraphData,
   getSatelliteData,
   getTodayDateString,
 } from "../helper/SatelliteDataHelper";
@@ -18,6 +25,7 @@ const router = express.Router();
 let cacheResponse: TLEResponse;
 let iotdCache: IOTDResponse | undefined;
 let asteroidCache: AsteriodDataResponse | undefined;
+let naturalEventCache: NaturalEventResponse | undefined;
 
 router.get("/satellite", async (req, res) => {
   console.log("APIROUTES: Fetching satellite data");
@@ -72,13 +80,31 @@ router.post("/asteroid", async (req, res) => {
     } else {
       asteroidData = asteroidCache;
     }
-    console.log(asteroidApi(req.body.startDate, req.body.endDate))
     console.log("APIROUTES: Fetching satellite data - Success");
     const response = getAsteroidData(asteroidData);
     res.json(response);
   } catch (err) {
     res.status(400);
     console.log("APIROUTES: Fetching satellite data - Failure");
+    res.json(getErrorMessage(err));
+  }
+});
+
+router.get("/naturalevents", async (req, res) => {
+  console.log("APIROUTES: Fetching natural event data");
+  try {
+    let naturalEvent: NaturalEventResponse;
+    if (!naturalEventCache) {
+      naturalEvent = await fetchData(naturalEventApi);
+      naturalEventCache = naturalEvent;
+    } else {
+      naturalEvent = naturalEventCache;
+    }
+    const response = getGraphData(naturalEvent);
+    res.json(response);
+  } catch (err) {
+    res.status(400);
+    console.log("APIROUTES: Fetching natual event data - Failure");
     res.json(getErrorMessage(err));
   }
 });

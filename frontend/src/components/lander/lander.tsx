@@ -1,5 +1,5 @@
 import { Menu } from '../menu/menu';
-import { Notifications } from '../notifications/notifications';
+import { NaturalEvents } from '../naturalevents/naturalEvents';
 import Modal from '../common/modal/modal';
 import { Iotd } from '../iotd/iotd';
 import { Screens } from '../../types/commonTypes';
@@ -23,6 +23,7 @@ export const OrbitalEyeLander = () => {
   const screens = {
     [Screens.IOTD]: <Iotd />,
     [Screens.ASTEROID_DATA]: <AsteroidInfo />,
+    [Screens.NATURAL_EVENTS]: <NaturalEvents />,
   };
 
   return (
@@ -31,11 +32,8 @@ export const OrbitalEyeLander = () => {
         <div className="menu">
           <Menu />
         </div>
-        <div className='absolute top-0 right-0 m-4 font-bold text-2xl italic'>
-          <h1 className='text-white'>Orbital Eye</h1>
-        </div>
-        <div>
-          <Notifications />
+        <div className="absolute top-0 right-0 m-4 font-bold text-2xl italic">
+          <h1 className="text-white">Orbital Eye</h1>
         </div>
         <div>
           {showModal && context.screen && (

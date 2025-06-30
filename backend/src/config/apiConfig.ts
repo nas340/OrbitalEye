@@ -5,8 +5,6 @@ dotenv.config();
 
 const APIKEY = process.env.APIKEY;
 
-console.log("APIKEY", APIKEY);
-
 export const tleApiConfig = {
   uri: "https://tle.ivanstanojevic.me/api/tle",
   method: RequestMethod.GET,
@@ -26,3 +24,8 @@ export const asteroidApi = (start_date: string, end_date: string) => {
     method: RequestMethod.GET,
   };
 };
+
+export const naturalEventApi = {
+  uri: "https://eonet.gsfc.nasa.gov/api/v2.1/events?status=closed",
+  method: RequestMethod.GET
+}

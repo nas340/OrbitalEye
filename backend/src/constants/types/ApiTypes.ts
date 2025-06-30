@@ -57,12 +57,20 @@ export interface CloseApproachData {
 }
 
 export interface AsteroidData {
-    id: string;
-    name: string;
-    estimatedDiameter: number;
-    isHazardous: boolean;
-    relativeVelocity: number;
-    missDistance: number;
-    url: string;
-    approachDate: string;
+  id: string;
+  name: string;
+  estimatedDiameter: number;
+  isHazardous: boolean;
+  relativeVelocity: number;
+  missDistance: number;
+  url: string;
+  approachDate: string;
+}
+
+export interface NaturalEventResponse {
+  events: Events[];
+}
+
+export interface Events {
+  closed: string;
 }
