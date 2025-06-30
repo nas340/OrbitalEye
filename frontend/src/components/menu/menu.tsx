@@ -16,9 +16,9 @@ export const Menu = () => {
   };
 
   return (
-    <div className=''>
+    <div className="">
       <div
-        className="glass flex justify-center items-center p-2 cursor-pointer"
+        className="glass flex justify-center items-center p-2 cursor-pointer md:hidden"
         onClick={() => setDisplayDropdown(prev => !prev)}
       >
         <svg
@@ -53,6 +53,20 @@ export const Menu = () => {
           </button>
         </div>
       )}
+      <div className="flex font-thin italic gap-x-8 mt-2 ml-4">
+        <button
+          onClick={() => updateContextWithScreen(Screens.IOTD)}
+          className="text-white text-xl hover:underline"
+        >
+          AIOD
+        </button>
+        <button
+          onClick={() => updateContextWithScreen(Screens.ASTEROID_DATA)}
+          className="text-white text-xl hover:underline"
+        >
+          Asteroid info
+        </button>
+      </div>
     </div>
   );
 };

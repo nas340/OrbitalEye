@@ -5,6 +5,8 @@ import { TextureLoader, AdditiveBlending } from 'three';
 import DashedLine from '../dashedline';
 import Stars from '../stars';
 import Satellites from '../satellites';
+import AssetLoader from '../../common/assetloader/assetLoader';
+import { Suspense } from 'react';
 
 const Earth = () => {
   const earthTexture = useLoader(TextureLoader, '/earth.jpg');
@@ -24,34 +26,39 @@ const Earth = () => {
           position: [0, 0, 5],
         }}
       >
-        <group position={[0, 0, 0]} rotation={[0, rotationDegrees * 0.0174, 0]}>
-          <mesh>
-            <icosahedronGeometry args={[1, 12]} />
-            <meshPhongMaterial map={earthTexture} />
-          </mesh>
-          <mesh scale={1.02}>
-            <icosahedronGeometry args={[1, 12]} />
-            <meshStandardMaterial
-              map={cloudsTexture}
-              transparent
-              opacity={1}
-              blending={AdditiveBlending}
-            />
-          </mesh>
-          <mesh>
-            <icosahedronGeometry args={[1, 12]} />
-            <meshStandardMaterial
-              map={lightsTexture}
-              blending={AdditiveBlending}
-            />
-          </mesh>
-        </group>
-        <DashedLine />
-        <Stars />
-        <Satellites />
-        <ambientLight intensity={0.2} />
-        <directionalLight position={[5, 0, 1]} color="white" intensity={3} />
-        <OrbitControls minDistance={2} maxDistance={10}/>
+        <Suspense fallback={<AssetLoader />}>
+          <group
+            position={[0, 0, 0]}
+            rotation={[0, rotationDegrees * 0.0174, 0]}
+          >
+            <mesh>
+              <icosahedronGeometry args={[1, 12]} />
+              <meshPhongMaterial map={earthTexture} />
+            </mesh>
+            <mesh scale={1.02}>
+              <icosahedronGeometry args={[1, 12]} />
+              <meshStandardMaterial
+                map={cloudsTexture}
+                transparent
+                opacity={1}
+                blending={AdditiveBlending}
+              />
+            </mesh>
+            <mesh>
+              <icosahedronGeometry args={[1, 12]} />
+              <meshStandardMaterial
+                map={lightsTexture}
+                blending={AdditiveBlending}
+              />
+            </mesh>
+          </group>
+          <DashedLine />
+          <Stars />
+          <Satellites />
+          <ambientLight intensity={0.2} />
+          <directionalLight position={[5, 0, 1]} color="white" intensity={3} />
+          <OrbitControls minDistance={2} maxDistance={10} />
+        </Suspense>
       </Canvas>
     </div>
   );
