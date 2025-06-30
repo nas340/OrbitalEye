@@ -13,9 +13,31 @@ const AsteroidInfo = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  function getCurrentWeekRange(): { startDate: string; endDate: string } {
+    const now = new Date();
+    const dayOfWeek = now.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const sundayOffset = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+
+    const monday = new Date(now);
+    monday.setDate(now.getDate() + mondayOffset);
+
+    const sunday = new Date(now);
+    sunday.setDate(now.getDate() + sundayOffset);
+
+    const toISO = (d: Date) => d.toISOString().slice(0, 10);
+
+    return {
+      startDate: toISO(monday),
+      endDate: toISO(sunday),
+    };
+  }
+
   useEffect(() => {
-    fetchData(asteroidData('2025-06-01', '2025-06-07'))
+    const { startDate, endDate } = getCurrentWeekRange();
+    fetchData(asteroidData(startDate, endDate))
       .then(data => {
+        if (data.length === 0) setError(true);
         setResponse(data);
         setLoading(false);
       })
@@ -41,8 +63,8 @@ const AsteroidInfo = () => {
         )}
         {response && (
           <div>
-            <div className="sticky top-0 bg-zinc-900 w-full text-center p-2">
-              Asteroid Info
+            <div className="sticky top-0 bg-zinc-900 w-full text-center p-2 font-semibold italic">
+              Asteroids visiting us this week
             </div>
             <div className="flex mt-1">
               <div className="max-h-[70vh] basis-2/5 overflow-auto explanation-scrollbar">

@@ -14,6 +14,7 @@ export const Iotd = () => {
   useEffect(() => {
     fetchData(iotdData)
       .then(data => {
+        if (data.length === 0) setError(false);
         setResponse(data);
         setLoading(false);
       })

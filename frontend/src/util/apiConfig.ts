@@ -1,6 +1,6 @@
 import { ApiConfig, RequestMethod } from "../types/commonTypes"
 
-const microServiceUrl = 'http://localhost:5000'
+const microServiceUrl = import.meta.env.VITE_MSURI;
 
 export const satelliteData: ApiConfig = {
   uri: microServiceUrl + '/api/satellite',
